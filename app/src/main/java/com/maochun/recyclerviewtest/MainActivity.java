@@ -1,12 +1,13 @@
 package com.maochun.recyclerviewtest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,14 +16,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] itemArray = new String[100];
-        for(int i=0; i<100; i++){
-            itemArray[i] = "Test item " + i;
-        }
+        Button verticalListButton = findViewById(R.id.button_single_vlist);
+        Button horizontalButton = findViewById(R.id.button_single_hlist);
+        Button multiListButton = findViewById(R.id.button_single_multilist);
+        Button withSublistButton = findViewById(R.id.button_list_with_sub);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_test);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        TestListAdapter theAdapter = new TestListAdapter(this, itemArray);
-        recyclerView.setAdapter(theAdapter);
+        verticalListButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent newIntent = new Intent(MainActivity.this, VerticalListActivity.class);
+                startActivity(newIntent);
+            }
+        });
+
+        horizontalButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent newIntent = new Intent(MainActivity.this, HorizontalListActivity.class);
+                startActivity(newIntent);
+            }
+        });
+
+        multiListButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent newIntent = new Intent(MainActivity.this, MultipleItemListActivity.class);
+                startActivity(newIntent);
+            }
+        });
+
+        withSublistButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent newIntent = new Intent(MainActivity.this, ListWithSublistMainActivity.class);
+                startActivity(newIntent);
+            }
+        });
+
     }
 }
